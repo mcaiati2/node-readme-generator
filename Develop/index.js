@@ -3,7 +3,8 @@ import inquirer from 'inquirer';
 import { promises as fs } from 'fs';
 
 // TODO: Create an array of questions for user input
-const questions = await inquirer.prompt([
+ async function collectUserInput() {
+        const questions = await inquirer.prompt([
     {
         message: 'what is your full name?',
         name: 'fullName',
@@ -27,24 +28,33 @@ const questions = await inquirer.prompt([
     },
 ]);
 
+return questions;
+ }
+
+
 
 // TODO: Create a function to write README file
-async function writeToFile(fileName, data) {
+async function writeToFile(fileName, answers) {
     const markdownContent = `
     # Contact Information
     
-    - **Full Name:** ${questions.fullName}
-    - **Phone Number:** ${questions.phoneNumber}
-    - **Address:** ${questions.address}
-    - **Favorite Food Category:** ${questions.foodCategory}
-    `;}
+    - **Full Name:** ${answers.fullName}
+    - **Phone Number:** ${answers.phoneNumber}
+    - **Address:** ${answers.address}
+    - **Favorite Food Category:** ${answers.foodCategory}
+    `;
+
+    await fs.writeFile(fileName, markdownContent);
+}
 
 // TODO: Create a function to initialize app
-function init() {}
+async function init() {
+    const answers = await collectUserInput();
+    await writeToFile('contact_info.md', answers);
+}
 
 // Function call to initialize app
 init();
 
-
-export default createMarkdownFile;
+export default init;
 
