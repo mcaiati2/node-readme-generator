@@ -4,28 +4,52 @@ import { promises as fs } from 'fs';
 
 // TODO: Create an array of questions for user input
  async function collectUserInput() {
-        const questions = await inquirer.prompt([
+        const response = await inquirer.prompt([
     {
-        message: 'what is your full name?',
-        name: 'fullName',
-        type: 'input',
+        message: 'What is the title of your project?',
+        name: 'projectTitle',
     },
     {
-        message: 'what is your phone number?',
-        name: 'phoneNumber',
-        type: 'input',
+        message: "Please provide a detailed description of your project, explaining the what, why, and how behind it's creation"
     },
     {
-        message: 'what is your address?',
-        name: 'address',
-        type: 'input',
+        message: 'Please select all sections that you want to include in your README:',
+        name: 'tableOfContents',
+        choices: [
+            'License',
+            'Installation',
+            'Usage',
+            'Contributing',
+            'Tests',
+            'Questions',
+
+        ]
     },
     {
-        message: 'what is your favorite food category?',
-        name: 'foodCategory',
-        type: 'list',
-        choices: ['American', 'Chinese', 'Japanese', 'Italian'],
+        message: 'Would you like to use a license?',
+        name: 'projectLicense',
+    
     },
+    {
+        message: 'What are the exact steps that need to be taken to get the deployment environment up and running? Please be sure to include detailed instructions.',
+        name: 'deploymentSteps',
+    },
+    {
+        message: 'Please provided details instructions for use. Screenshots should be used when relevant (placed in the assets/images folder). ',
+        name: 'projectFunctionality',
+    },
+    {
+        message: 'Please provide a list of collaborators, third party assets, and tuorials used for the project.',
+        name: 'projectCollaborators',
+    },
+    {
+        message: 'What are the tests for your application? Provide examples on how to run the tests.',
+        name: 'projectTests',
+    },
+    {
+        message: 'Please provide contact information for where users can reach out if they have questions regarding the project.',
+        name: 'projectQuestions',
+    }
 ]);
 
 return questions;
@@ -34,14 +58,14 @@ return questions;
 
 
 // TODO: Create a function to write README file
-async function writeToFile(fileName, answers) {
+async function writeToFile(fileName, response) {
     const markdownContent = `
-    # Contact Information
+    # ${response.projectTitle}
     
-    - **Full Name:** ${answers.fullName}
-    - **Phone Number:** ${answers.phoneNumber}
-    - **Address:** ${answers.address}
-    - **Favorite Food Category:** ${answers.foodCategory}
+    ## Description \n${response.description}
+    ## Table of Contents \n${response.tableOfContents}
+    - **Address:** ${response.address}
+    - **Favorite Food Category:** ${response.foodCategory}
     `;
 
     await fs.writeFile(fileName, markdownContent);
