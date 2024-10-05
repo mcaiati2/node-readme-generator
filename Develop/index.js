@@ -91,11 +91,13 @@ async function init() {
         message: 'Welcome to the markdown generator. Do you want to generate a file or exit?',
         name: 'menuResponse',
     })
+    if (menuResponse === 'yes') {
+        import generateMarkdown from './utils/generateMarkdown.js';
+    }
 }
 
 // Function call to initialize app
 init();
 
 export default init;
-export {collectUserInput, response};
 
