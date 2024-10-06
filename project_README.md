@@ -14,7 +14,7 @@ This project was created to help alleviate the pain points of creating a README 
 ## Installation
 To use this application, you will need to install Node.js on your computer. You will also need to use the Node Package Manager  install inquirer so that you can interact with the command line by asking questions and collecting responses.
 ## Usage
-Once all of the required modules are installed and imported, you can enter the node Develop/ prompt to begin the application. Follow the prompts to collect all of the data you'd like to add to your README file.
+[Video Demonstration](https://drive.google.com/file/d/1TTVYkgWKa0AG27uQz43vW8fBBnDIEJYx/view). Once all of the required modules are installed and imported, you can enter the node Develop/ prompt to begin the application. Follow the prompts to collect all of the data you'd like to add to your README file.
 ## Contributing
 Copilot
 ## Tests
