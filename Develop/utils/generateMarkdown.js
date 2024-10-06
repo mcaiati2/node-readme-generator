@@ -35,18 +35,25 @@ function renderLicenseSection(license) {
 
 // DONE Create a function to generate markdown for README
 function generateMarkdown(answersObj) {
+  // Function to create anchor links for the table of contents
   const createAnchorLink = (item) => {
-    return `-[${item}] (#${item.toLowerCase().replace(/ /g, '-')})`;
+    return `- [${item}](#${item.toLowerCase().replace(/ /g, '-')})`;
   };
-  
+
   return `# ${answersObj.title}
 ${renderLicenseBadge(answersObj.license)}
 ${renderLicenseSection(answersObj.license)}
 ${renderLicenseLink(answersObj.license)}
+## Table of Contents
+${answersObj.tableOfContents.map(createAnchorLink).join('\n')}
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Questions](#questions)
 ## Description
 ${answersObj.description}
-## Table of Contents
-${answersObj.tableOfContents.map(item => `- ${item}`).join('\n')}
 ## Installation
 ${answersObj.howToInstall}
 ## Usage
