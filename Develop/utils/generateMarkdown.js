@@ -42,8 +42,6 @@ function generateMarkdown(answersObj) {
 
   return `# ${answersObj.title}
 ${renderLicenseBadge(answersObj.license)}
-${renderLicenseSection(answersObj.license)}
-${renderLicenseLink(answersObj.license)}
 ## Table of Contents
 ${answersObj.tableOfContents.map(createAnchorLink).join('\n')}
 - [Description](#description)
@@ -52,6 +50,7 @@ ${answersObj.tableOfContents.map(createAnchorLink).join('\n')}
 - [Contributing](#contributing)
 - [Tests](#tests)
 - [Questions](#questions)
+- [License](#license)
 ## Description
 ${answersObj.description}
 ## Installation
@@ -64,6 +63,8 @@ ${answersObj.projectCollaborators}
 ${answersObj.projectTests}
 ## Questions
 ${answersObj.projectQuestions}
+${renderLicenseSection(answersObj.license)}
+${renderLicenseLink(answersObj.license)}
 `;
 }
 
