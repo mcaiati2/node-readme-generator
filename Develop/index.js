@@ -1,9 +1,9 @@
-// TODO: Include packages needed for this application
+// DONE Include packages needed for this application
 import inquirer from 'inquirer';
 import { promises as fs } from 'fs';
 import generateMarkdown from './utils/generateMarkdown.js';
 
-// TODO: Create an array of questions for user input
+// DONE Create an array of questions for user input
     const questions = [
     {
         message: 'What is the title of your project?',
@@ -14,7 +14,7 @@ import generateMarkdown from './utils/generateMarkdown.js';
         name: 'description',
     },
     {
-        message: 'Please select all sections that you want to include in your README Table of Contents:',
+        message: 'Please select all sections that you want to include in the Table of Contents section of your README:',
         name: 'tableOfContents',
         type: 'checkbox',
         choices: [
@@ -27,12 +27,12 @@ import generateMarkdown from './utils/generateMarkdown.js';
         ]
     },
     {
-        message: 'Please choose your GitHub License:',
+        message: 'Would you like to use a GitHub license? If so, please select a license below. If you do not wish to use a license, please choose "None" below.',
         name: 'license',
         type: 'list',
         choices: [
             'MIT',
-            'GPLv3',
+            'GPL-3-0',
             'Apache-2.0',
             'BSD-3-Clause',
             'None',
@@ -60,35 +60,24 @@ import generateMarkdown from './utils/generateMarkdown.js';
     },
 ];
 
-// this function is called with the questions array (displays each question)
-
-// inquirer.prompt(questions) displays the quesions to the user and collects their responses.
-// Once all the questions are answered, responses are stored in an answers object.
-// .then() handles the result of a promise. in this case, we're using a callback function that RECEIVES the answers object.
-// inquirer.prompt(questions).then(answers => {
-//     console.log(answers);
-// })
-
-// TODO: Create a function to write README file
+// DONE Create a function to write README file
 function writeToFile(fileName, data) {
     const markdownContent = generateMarkdown(data);
     // writeFile writes the DATA to the file.
     fs.writeFile(fileName, markdownContent);
     console.log('README successfully generated!');
-    // TODO await? 
-}
-    
+}    
 
-// TODO: Create a function to initialize app
+// DONE Create a function to initialize app
 async function init() {
     const menuPrompt = await inquirer.prompt({
-        message: 'Welcome to the markdown generator. Do you want to generate a README file?',
+        message: 'Welcome to the README generator. Do you want to generate a README file?',
         name: 'menuReply',
         type: 'list',
-        choices: ['yes', 'no'],
+        choices: ['Yes', 'No'],
     });
 
-    if (menuPrompt.menuReply === 'yes') {
+    if (menuPrompt.menuReply === 'Yes') {
         const answers = await inquirer.prompt(questions);
         const markdown = generateMarkdown(answers);
         writeToFile('README.md', answers, markdown);
@@ -97,9 +86,7 @@ async function init() {
     };
 }
 
-
 // Function call to initialize app
 init();
 
 export default init;
-
