@@ -1,0 +1,2 @@
+We call on generateMarkdown. import generate markdown to index.js
+call on it in the init function.

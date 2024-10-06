@@ -1,7 +1,7 @@
 // TODO: Include packages needed for this application
 import inquirer from 'inquirer';
 import { promises as fs } from 'fs';
-import { renderLicenseBadge } from './utils/generateMarkdown.js';
+import generateMarkdown from './utils/generateMarkdown.js';
 
 // TODO: Create an array of questions for user input
  async function collectUserInput() {
@@ -28,13 +28,14 @@ import { renderLicenseBadge } from './utils/generateMarkdown.js';
         ]
     },
     {
-        message: 'Would you like to use a license?',
-        name: 'projectLicense',
+        message: 'Please choose your GitHub License:',
+        name: 'license',
         type: 'list',
         choices: [
             'MIT',
-            'Other2',
-            'Other3',
+            'GPLv3',
+            'Apache-2.0',
+            'BSD-3-Clause',
             'None',
         ]
     },
@@ -73,7 +74,7 @@ async function writeToFile(fileName, response) {
     # ${response.projectTitle}
     ## Description \n${response.projectDescription}
     ## Table of Contents \n${response.tableOfContents}
-    ## License \n${response.projectLicense}
+    ## License \n${response.license}
     ## Installation \n${response.foodCategory}
     ## Usage \n${response.projectFunctionality}
     ## Contributing \n${response.projectCollaborators}
@@ -91,9 +92,10 @@ async function init() {
         message: 'Welcome to the markdown generator. Do you want to generate a file or exit?',
         name: 'menuResponse',
     })
-    if (menuResponse === 'yes') {
-        import generateMarkdown from './utils/generateMarkdown.js';
+    if (menuResponse === 'yes' || 'Yes') { 
+        collectUserInput();
     }
+    
 }
 
 // Function call to initialize app
