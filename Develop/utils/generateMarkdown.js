@@ -35,6 +35,10 @@ function renderLicenseSection(license) {
 
 // DONE Create a function to generate markdown for README
 function generateMarkdown(answersObj) {
+  const createAnchorLink = (item) => {
+    return `-[${item}] (#${item.toLowerCase().replace(/ /g, '-')})`;
+  };
+  
   return `# ${answersObj.title}
 ${renderLicenseBadge(answersObj.license)}
 ${renderLicenseSection(answersObj.license)}
