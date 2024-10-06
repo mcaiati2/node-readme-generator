@@ -4,7 +4,7 @@ import { promises as fs } from 'fs';
 import generateMarkdown from './utils/generateMarkdown.js';
 
 // DONE Create an array of questions for user input
-    const questions = [
+const questions = [
     {
         message: 'What is the title of your project?',
         name: 'title',
@@ -63,10 +63,9 @@ import generateMarkdown from './utils/generateMarkdown.js';
 // DONE Create a function to write README file
 function writeToFile(fileName, data) {
     const markdownContent = generateMarkdown(data);
-    // writeFile writes the DATA to the file.
     fs.writeFile(fileName, markdownContent);
     console.log('README successfully generated!');
-}    
+}
 
 // DONE Create a function to initialize app
 async function init() {
@@ -81,7 +80,7 @@ async function init() {
         const answers = await inquirer.prompt(questions);
         const markdown = generateMarkdown(answers);
         writeToFile('README.md', answers, markdown);
-    } else{
+    } else {
         console.log('You have exited the markdown generator.')
     };
 }
