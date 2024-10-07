@@ -14,19 +14,6 @@ const questions = [
         name: 'description',
     },
     {
-        message: 'Please select all sections that you want to include in the Table of Contents section of your README:',
-        name: 'tableOfContents',
-        type: 'checkbox',
-        choices: [
-            'License',
-            'Installation',
-            'Usage',
-            'Contributing',
-            'Tests',
-            'Questions',
-        ]
-    },
-    {
         message: 'Would you like to use a GitHub license? If so, please select a license below. If you do not wish to use a license, please choose "None" below.',
         name: 'license',
         type: 'list',

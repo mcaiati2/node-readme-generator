@@ -43,7 +43,6 @@ function generateMarkdown(answersObj) {
   return `# ${answersObj.title}
 ${renderLicenseBadge(answersObj.license)}
 ## Table of Contents
-${answersObj.tableOfContents.map(createAnchorLink).join('\n')}
 - [Description](#description)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -69,3 +68,4 @@ ${renderLicenseLink(answersObj.license)}
 }
 
 export default generateMarkdown;
+// add ternary operator for license table of contents
