@@ -35,37 +35,47 @@ function renderLicenseSection(license) {
 
 // DONE Create a function to generate markdown for README
 function generateMarkdown(answersObj) {
-  // Function to create anchor links for the table of contents
-  const createAnchorLink = (item) => {
-    return `- [${item}](#${item.toLowerCase().replace(/ /g, '-')})`;
-  };
-
-  return `# ${answersObj.title}
-${renderLicenseBadge(answersObj.license)}
+  let tableOfContents = `
 ## Table of Contents
-${answersObj.tableOfContents.map(createAnchorLink).join('\n')}
-- [Description](#description)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [Tests](#tests)
 - [Questions](#questions)
-- [License](#license)
+`;
+
+if (answersObj.license && answersObj.license !== 'None') {
+  tableOfContents += `- [License](#license)\n`;
+}
+  return `# ${answersObj.title}
+${renderLicenseBadge(answersObj.license)}
+
+${tableOfContents}
+
 ## Description
 ${answersObj.description}
+
 ## Installation
 ${answersObj.howToInstall}
+
 ## Usage
 ${answersObj.howToUse}
+
 ## Contributing
 ${answersObj.projectCollaborators}
+
 ## Tests
 ${answersObj.projectTests}
+
 ## Questions
 ${answersObj.projectQuestions}
+
 ${renderLicenseSection(answersObj.license)}
 ${renderLicenseLink(answersObj.license)}
 `;
+
+
 }
 
 export default generateMarkdown;
+// add ternary operator for license table of contents
