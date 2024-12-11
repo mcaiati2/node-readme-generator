@@ -1,9 +1,8 @@
-// DONE Include packages needed for this application
 import inquirer from 'inquirer';
 import { promises as fs } from 'fs';
 import generateMarkdown from './utils/generateMarkdown.js';
 
-// DONE Create an array of questions for user input
+// Questions array for user input:
 const questions = [
     {
         message: 'What is the title of your project?',
@@ -47,14 +46,14 @@ const questions = [
     },
 ];
 
-// DONE Create a function to write README file
+// Function to create README file
 function writeToFile(fileName, data) {
     const markdownContent = generateMarkdown(data);
     fs.writeFile(fileName, markdownContent);
     console.log('README successfully generated!');
 }
 
-// DONE Create a function to initialize app
+// Function that initilizes application
 async function init() {
     const menuPrompt = await inquirer.prompt({
         message: 'Welcome to the README generator. Do you want to generate a README file?',
@@ -72,7 +71,6 @@ async function init() {
     };
 }
 
-// Function call to initialize app
 init();
 
 export default init;
